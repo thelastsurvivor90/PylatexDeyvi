@@ -1,0 +1,580 @@
+# 🎥 GUÍA PARA VIDEO DE YOUTUBE
+## Sistema de Álgebra Lineal con Python y PyLaTeX
+
+---
+
+## 📋 PREPARACIÓN PREVIA
+
+### Equipamiento Necesario
+- [ ] Software de grabación de pantalla (OBS Studio, Camtasia, Loom)
+- [ ] Micrófono de buena calidad
+- [ ] Ambiente silencioso
+- [ ] Resolución mínima: 1080p (1920×1080)
+- [ ] Proyecto funcionando correctamente
+
+### Checklist Técnico
+- [ ] Código probado y funcionando
+- [ ] Ejemplos preparados
+- [ ] PDFs de muestra generados
+- [ ] Diapositivas de apoyo (opcional)
+- [ ] Script o guión preparado
+
+---
+
+## 🎬 ESTRUCTURA DEL VIDEO (12-15 minutos)
+
+### SEGMENTO 1: INTRODUCCIÓN (0:00 - 1:30)
+
+**Elementos visuales:**
+- Pantalla de título con nombre del proyecto
+- Nombres del Creador (osea yo)
+- Logo de la universidad
+
+**Script sugerido:**
+```
+"¡Hola! Bienvenidos a nuestro proyecto de Álgebra Lineal.
+Hoy les presentaremos nuestro Sistema de Álgebra Lineal
+desarrollado en Python usando PyLaTeX.
+
+Soy Deyvi Samuel y en este video les mostrare
+cómo generamos matrices aleatorias, calculamos determinantes
+y matrices inversas, todo con documentación automática en LaTeX.
+
+Este proyecto está disponible en GitHub en el enlace que
+aparece en la descripción."
+```
+
+**Qué mostrar:**
+- Repositorio GitHub abierto en navegador
+- Estructura de archivos del proyecto
+- README.md con documentación
+
+---
+
+### SEGMENTO 2: DEMOSTRACIÓN - GENERACIÓN DE MATRICES (1:30 - 4:00)
+
+**Script:**
+```
+"Comencemos con la generación de matrices. Nuestro sistema
+puede crear 9 tipos diferentes de matrices aleatorias."
+```
+
+**Demo en vivo:**
+
+1. **Abrir editor de código** y mostrar la clase `MatrixGenerator`
+
+2. **Ejecutar código en consola:**
+```python
+from matrix_operations import MatrixGenerator
+
+gen = MatrixGenerator()
+
+# Mostrar cada tipo
+print("Matriz Diagonal:")
+print(gen.matriz_diagonal())
+
+print("\nMatriz Triangular Superior:")
+print(gen.matriz_triangular_superior())
+
+print("\nMatriz Identidad:")
+print(gen.matriz_identidad())
+```
+
+3. **Generar documento PDF:**
+```python
+from matrix_operations import LaTeXDocumentGenerator
+
+doc = LaTeXDocumentGenerator("Demostración de Matrices")
+doc.documento_tipos_matrices()
+doc.generar_pdf("demo_matrices")
+```
+
+4. **Abrir el PDF generado** y mostrar el resultado
+   - Zoom en las matrices
+   - Destacar el formato profesional
+   - Mostrar diferentes tipos
+
+**Puntos clave a mencionar:**
+- Parámetros configurables (tamaño, rango)
+- Formato LaTeX automático
+- Calidad profesional de salida
+
+---
+
+### SEGMENTO 3: CÁLCULO DE DETERMINANTES (4:00 - 7:00)
+
+**Script:**
+```
+"Ahora veamos el cálculo de determinantes usando el método
+de eliminación gaussiana. El sistema documenta cada paso
+del proceso."
+```
+
+**Demo en vivo:**
+
+1. **Crear una matriz de ejemplo:**
+```python
+import numpy as np
+
+matriz = np.array([
+    [4, 3, 2],
+    [1, 5, 7],
+    [2, 8, 3]
+])
+
+print("Matriz original:")
+print(matriz)
+```
+
+2. **Calcular determinante:**
+```python
+from matrix_operations import DeterminantCalculator
+
+calc = DeterminantCalculator(matriz)
+det = calc.calcular_determinante()
+print(f"\nDeterminante: {det}")
+```
+
+3. **Mostrar los pasos:**
+```python
+print("\nPasos del proceso:")
+for i, (desc, mat) in enumerate(calc.pasos):
+    print(f"\nPaso {i+1}: {desc}")
+    print(mat)
+```
+
+4. **Generar documento PDF:**
+```python
+doc = LaTeXDocumentGenerator("Cálculo de Determinante")
+doc.documento_determinante(matriz)
+doc.generar_pdf("demo_determinante")
+```
+
+5. **Abrir PDF y explicar:**
+   - Operaciones elementales de fila
+   - Intercambios de fila
+   - Multiplicadores
+   - Resultado final
+
+**Explicación matemática:**
+- "El método de Gauss transforma la matriz a triangular superior"
+- "Cada operación está documentada paso a paso"
+- "El determinante es el producto de la diagonal"
+
+---
+
+### SEGMENTO 4: MATRIZ INVERSA (7:00 - 10:00)
+
+**Script:**
+```
+"Pasemos ahora al cálculo de la matriz inversa. Este es el
+proceso más completo, ya que requiere calcular cofactores,
+la matriz adjunta y finalmente la inversa."
+```
+
+**Demo en vivo:**
+
+1. **Crear matriz invertible:**
+```python
+matriz = np.array([
+    [4, 7],
+    [2, 6]
+])
+
+print("Matriz A:")
+print(matriz)
+```
+
+2. **Calcular inversa completa:**
+```python
+from matrix_operations import InverseCalculator
+
+calc = InverseCalculator(matriz)
+
+print("\n1. Matriz de Cofactores:")
+print(calc.calcular_cofactores())
+
+print("\n2. Matriz Adjunta:")
+print(calc.calcular_adjunta())
+
+print("\n3. Matriz Inversa:")
+inversa = calc.calcular_inversa()
+print(inversa)
+```
+
+3. **Verificación:**
+```python
+print("\n4. Verificación A × A⁻¹ = I:")
+producto = np.dot(matriz, inversa)
+print(producto)
+```
+
+4. **Generar documento PDF:**
+```python
+doc = LaTeXDocumentGenerator("Matriz Inversa Completa")
+doc.documento_inversa(matriz)
+doc.generar_pdf("demo_inversa")
+```
+
+5. **Abrir PDF y recorrer:**
+   - Matriz original
+   - Cofactores detallados
+   - Adjunta (transpuesta)
+   - Fórmula de la inversa
+   - Verificación
+
+**Explicación matemática:**
+- "La fórmula es A⁻¹ = (1/det(A)) × Adj(A)"
+- "Cada cofactor es el determinante del menor correspondiente"
+- "La verificación confirma que A × A⁻¹ = I"
+
+---
+
+### SEGMENTO 5: REVISIÓN DEL CÓDIGO (10:00 - 12:00)
+
+**Script:**
+```
+"Veamos ahora la estructura del código fuente. El proyecto
+está organizado en clases que siguen principios de POO."
+```
+
+**Qué mostrar:**
+
+1. **Abrir `matrix_operations.py`**
+
+2. **Recorrer cada clase brevemente:**
+
+**MatrixGenerator:**
+```python
+@staticmethod
+def matriz_diagonal(n=4, rango=(1, 10)):
+    """Genera una matriz diagonal"""
+    matriz = np.zeros((n, n), dtype=int)
+    np.fill_diagonal(matriz, np.random.randint(rango[0], rango[1], n))
+    return matriz
+```
+- "Esta clase encapsula toda la generación de matrices"
+- "Cada método es independiente y reutilizable"
+
+**DeterminantCalculator:**
+```python
+def calcular_determinante(self):
+    """Calcula el determinante usando eliminación gaussiana"""
+    # Mostrar lógica principal
+    ...
+```
+- "Implementa el algoritmo de Gauss paso a paso"
+- "Guarda cada operación para documentación"
+
+**InverseCalculator:**
+```python
+def calcular_inversa(self):
+    """Calcula la matriz inversa"""
+    det = np.linalg.det(self.matriz)
+    if abs(det) < 1e-10:
+        raise ValueError("La matriz no tiene inversa")
+    ...
+```
+- "Valida que la matriz sea invertible"
+- "Implementa el método de cofactores"
+
+**LaTeXDocumentGenerator:**
+```python
+def _matriz_to_latex(self, matriz):
+    """Convierte una matriz numpy a formato LaTeX"""
+    ...
+```
+- "Genera el formato LaTeX automáticamente"
+- "Crea documentos PDF profesionales"
+
+3. **Mostrar `demo_interactivo.py`:**
+- "Tenemos también una interfaz interactiva"
+- "Permite usar el sistema sin programar"
+- Ejecutar brevemente el menú
+
+---
+
+### SEGMENTO 6: GITHUB Y DOCUMENTACIÓN (12:00 - 13:30)
+
+**Script:**
+```
+"Todo el código está disponible públicamente en GitHub.
+Veamos el repositorio."
+```
+
+**Mostrar en navegador:**
+
+1. **Página principal del repositorio**
+   - README.md completo
+   - Badges de versión
+   - Descripción clara
+
+2. **Recorrer secciones del README:**
+   - Instalación
+   - Ejemplos de uso
+   - Documentación de clases
+   - Estructura del proyecto
+
+3. **Mostrar archivos:**
+   - Código fuente
+   - requirements.txt
+   - Ejemplos generados
+   - Licencia
+
+4. **Highlights:**
+   - "El README incluye ejemplos de código"
+   - "Instrucciones claras de instalación"
+   - "Documentación completa de la API"
+
+---
+
+### SEGMENTO 7: CONCLUSIONES Y APLICACIONES (13:30 - 15:00)
+
+**Script:**
+```
+"Para concluir, hablemos de las aplicaciones prácticas
+de este sistema."
+```
+
+**Puntos a cubrir:**
+
+1. **Aplicaciones educativas:**
+   - Herramienta de aprendizaje
+   - Generación de ejercicios
+   - Visualización de procedimientos
+
+2. **Aplicaciones profesionales:**
+   - Documentación de cálculos
+   - Reportes técnicos
+   - Investigación científica
+
+3. **Características destacadas:**
+   - Código limpio y bien estructurado
+   - Documentación automática
+   - Fácil de extender
+   - Interfaz amigable
+
+4. **Aprendizajes del equipo:**
+   - Python avanzado
+   - PyLaTeX
+   - Git/GitHub
+   - Álgebra lineal aplicada
+
+**Cierre:**
+```
+"Gracias por ver nuestro video. Esperamos que este proyecto
+les sea útil. Pueden encontrar todo el código en GitHub y
+no olviden dejar sus comentarios y sugerencias.
+
+¡Hasta la próxima!"
+```
+
+---
+
+## 🎨 ELEMENTOS VISUALES RECOMENDADOS
+
+### Durante todo el video:
+- **Overlay con información:**
+  - Nombre del proyecto (esquina superior)
+  - Nombres de integrantes
+  - Link a GitHub
+
+- **Transiciones:**
+  - Limpias y profesionales
+  - No más de 1 segundo
+  - Consistentes en todo el video
+
+- **Subtítulos:**
+  - Considerar agregar subtítulos
+  - Mejora accesibilidad
+  - Ayuda a comprensión
+
+### Elementos gráficos:
+- Diapositivas de título para cada segmento
+- Flechas o círculos para destacar código
+- Zoom en partes importantes
+- Animaciones suaves (opcional)
+
+---
+
+## 🎤 TIPS DE GRABACIÓN
+
+### Audio:
+- [ ] Probar micrófono antes de grabar
+- [ ] Eliminar ruido de fondo
+- [ ] Hablar claro y pausado
+- [ ] Mantener volumen consistente
+- [ ] Hacer pausas entre segmentos
+
+### Video:
+- [ ] Cerrar aplicaciones innecesarias
+- [ ] Ocultar información personal
+- [ ] Usar tema de editor claro y legible
+- [ ] Aumentar tamaño de fuente si es necesario
+- [ ] Grabar en resolución 1080p mínimo
+
+### Edición:
+- [ ] Cortar errores y pausas largas
+- [ ] Agregar música de fondo suave (opcional)
+- [ ] Incluir marcadores de tiempo en descripción
+- [ ] Revisar audio y video sincronizados
+
+---
+
+## 📝 DESCRIPCIÓN PARA YOUTUBE
+
+```
+🧮 Sistema de Álgebra Lineal con Python y PyLaTeX
+
+En este video presentamos nuestro proyecto completo de álgebra lineal 
+desarrollado en Python. El sistema permite:
+
+✅ Generar 9 tipos diferentes de matrices aleatorias
+✅ Calcular determinantes usando el método de Gauss
+✅ Calcular matrices inversas con verificación
+✅ Generar documentación automática en PDF con LaTeX
+
+🔗 ENLACES:
+GitHub: https://github.com/[usuario]/algebra-lineal-pylatex
+Documentación: [URL del README]
+
+⏱️ MARCADORES DE TIEMPO:
+0:00 - Introducción
+1:30 - Generación de matrices
+4:00 - Cálculo de determinantes
+7:00 - Matriz inversa
+10:00 - Revisión del código
+12:00 - Repositorio GitHub
+13:30 - Conclusiones
+
+👥 EQUIPO:
+[Nombre 1] - [Rol]
+[Nombre 2] - [Rol]
+[Nombre 3] - [Rol]
+
+📚 TECNOLOGÍAS:
+• Python 3.8+
+• NumPy
+• PyLaTeX
+• LaTeX
+
+🎓 Universidad: [Nombre]
+📧 Contacto: [email]
+
+#Python #AlgebraLineal #PyLaTeX #Programacion #Matematicas
+```
+
+---
+
+## 🎯 ETIQUETAS SUGERIDAS
+
+```
+Python, PyLaTeX, Álgebra Lineal, Matrices, Determinantes, 
+Matriz Inversa, NumPy, LaTeX, Programación, Matemáticas,
+Tutorial, Educación, Universidad, Proyecto, GitHub,
+Linear Algebra, Matrix Operations, Computer Science
+```
+
+---
+
+## ✅ CHECKLIST FINAL ANTES DE PUBLICAR
+
+### Contenido:
+- [ ] Video completo (10-15 minutos)
+- [ ] Audio claro y sin ruido
+- [ ] Todas las demostraciones funcionan
+- [ ] Código visible y legible
+- [ ] PDFs generados correctamente
+
+### Edición:
+- [ ] Intro agregada
+- [ ] Transiciones aplicadas
+- [ ] Overlay con información
+- [ ] Outro con agradecimientos
+- [ ] Música de fondo (si aplica)
+
+### YouTube:
+- [ ] Título descriptivo
+- [ ] Descripción completa con enlaces
+- [ ] Etiquetas agregadas
+- [ ] Miniatura atractiva
+- [ ] Marcadores de tiempo en descripción
+- [ ] Configuración: "Público"
+- [ ] Playlist creada (si aplica)
+
+### Enlaces:
+- [ ] GitHub repository accesible
+- [ ] README.md actualizado
+- [ ] Código funcionando
+- [ ] Documentación completa
+
+---
+
+## 🎬 SCRIPT COMPLETO (OPCIONAL)
+
+Para practicar y tener más confianza, escribir el script completo 
+palabra por palabra. Incluir:
+
+1. **Texto a decir**
+2. **Acciones a realizar**
+3. **Elementos visuales a mostrar**
+4. **Tiempo estimado de cada parte**
+
+Ejemplo:
+```
+[0:00 - 0:30]
+[ACCIÓN: Mostrar pantalla de título]
+TEXTO: "¡Hola! Bienvenidos a nuestro proyecto..."
+[VISUAL: Fade in con nombre del proyecto]
+
+[0:30 - 1:00]
+[ACCIÓN: Cambiar a navegador con GitHub]
+TEXTO: "Este proyecto está disponible en GitHub..."
+[VISUAL: Destacar URL del repositorio]
+```
+
+---
+
+## 📊 MINIATURA DEL VIDEO (THUMBNAIL)
+
+### Elementos recomendados:
+- Título grande y legible: "Sistema de Álgebra Lineal"
+- Subtítulo: "Python + PyLaTeX"
+- Imagen de fondo: Código o matrices
+- Logo de Python y LaTeX
+- Colores contrastantes
+- Resolución: 1280×720 píxeles
+
+### Herramientas sugeridas:
+- Canva (plantillas gratis)
+- Photoshop
+- GIMP (gratuito)
+- PowerPoint/Google Slides
+
+---
+
+## 🚀 DESPUÉS DE PUBLICAR
+
+1. **Compartir el video:**
+   - Con compañeros de clase
+   - En redes sociales profesionales (LinkedIn)
+   - En grupos de Python/matemáticas
+
+2. **Actualizar el README:**
+   - Agregar enlace al video
+   - Incluir thumbnail del video
+
+3. **Responder comentarios:**
+   - Estar atento a preguntas
+   - Agradecer feedback
+   - Corregir errores señalados
+
+4. **Métricas a revisar:**
+   - Visualizaciones
+   - Likes/dislikes
+   - Comentarios
+   - Tiempo de retención
+
+---
+
+**¡Buena suerte con la grabación! 🎥✨**
